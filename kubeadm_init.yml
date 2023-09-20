@@ -1,0 +1,25 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: v1.27.1
+networking:
+    podSubnet: "10.244.0.0/16"
+apiServer:
+  certSANs:
+    - "10.98.0.1"
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+nodeRegistration:
+  ignorePreflightErrors:
+    - "NumCPU"
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: JoinConfiguration
+discovery:
+  bootstrapToken:
+    apiServerEndpoint: ${API_SERVER_ENPOINT}
+  timeout: "5m0s"
+nodeRegistration:
+  ignorePreflightErrors:
+    - "NumCPU"
+

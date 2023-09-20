@@ -1,0 +1,16 @@
+piVersion: v1
+kind: Secret
+metadata:
+  name: hcloud
+  namespace: kube-system
+stringData:
+  token: ${HETZNER_API_TOKEN}
+  network: ${NETWORK_ID}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hcloud-csi
+  namespace: kube-system
+stringData:
+  token: ${HETZNER_API_TOKEN}
